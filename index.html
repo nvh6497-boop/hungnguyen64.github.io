@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HUNG — Videographer & Filmmaker</title>
+<meta name="description" content="Portfolio của HUNG — videographer, quay và dựng phim.">
+<style>
+  /* ===== BIẾN MÀU — đổi tại đây để chỉnh tông ===== */
+  :root{
+    --bg:#0a0a0a;
+    --bg-soft:#111111;
+    --fg:#f2f2f2;
+    --muted:#888888;
+    --line:#222222;
+    --accent:#f2f2f2;
+    --maxw:1100px;
+    --gap:clamp(20px,4vw,48px);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--fg);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  img,iframe{display:block;max-width:100%}
+  section{padding:clamp(60px,10vw,120px) var(--gap)}
+  .wrap{max-width:var(--maxw);margin:0 auto;width:100%}
+
+  /* ===== Tiêu đề mục ===== */
+  .eyebrow{
+    font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:18px;
+  }
+  h1,h2,h3{font-weight:600;line-height:1.15;letter-spacing:-.02em}
+
+  /* ===== Header / Nav ===== */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px var(--gap);
+    background:rgba(10,10,10,.6);backdrop-filter:blur(10px);
+    border-bottom:1px solid transparent;transition:border-color .3s;
+  }
+  header.scrolled{border-color:var(--line)}
+  .logo{font-weight:700;letter-spacing:.05em}
+  nav ul{display:flex;gap:28px;list-style:none}
+  nav a{font-size:.9rem;color:var(--muted);transition:color .2s}
+  nav a:hover{color:var(--fg)}
+  .nav-toggle{display:none;background:none;border:0;color:var(--fg);font-size:1.5rem;cursor:pointer}
+
+  /* ===== Hero / Showreel ===== */
+  .hero{
+    min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+    padding-top:140px;
+  }
+  .hero h1{font-size:clamp(2.2rem,6.5vw,4.5rem);margin-bottom:20px}
+  .hero p{color:var(--muted);font-size:clamp(1rem,2.5vw,1.25rem);max-width:520px;margin-bottom:40px}
+  .reel{
+    position:relative;width:100%;aspect-ratio:16/9;
+    border:1px solid var(--line);border-radius:6px;overflow:hidden;
+    background:var(--bg-soft);
+  }
+  .reel iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+  /* ===== Dự án nổi bật (hero) ===== */
+  .featured-main{margin-bottom:clamp(14px,2vw,22px)}
+  .featured-main .thumb{aspect-ratio:16/9}
+  .featured-main h3{font-size:clamp(1.1rem,2.2vw,1.4rem)}
+  .featured-row{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2vw,22px)}
+  .featured-row .thumb{aspect-ratio:16/9}
+
+  /* ===== Nút ===== */
+  .btn{
+    display:inline-block;border:1px solid var(--fg);color:var(--fg);
+    padding:14px 30px;border-radius:40px;font-size:.9rem;letter-spacing:.03em;
+    transition:background .25s,color .25s;
+  }
+  .btn:hover{background:var(--fg);color:var(--bg)}
+
+  /* ===== About ===== */
+  .about-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:var(--gap);align-items:center}
+  .about-grid img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px;filter:grayscale(20%)}
+  .about-text h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:24px}
+  .about-text p{color:var(--muted);margin-bottom:16px}
+
+  /* ===== Work ===== */
+  .work-grid{
+    display:flex;gap:clamp(14px,2vw,24px);margin-top:32px;
+    overflow-x:auto;scroll-snap-type:x mandatory;
+    padding-bottom:16px;scrollbar-width:thin;scrollbar-color:var(--line) transparent;
+    -webkit-overflow-scrolling:touch;
+  }
+  .work-grid::-webkit-scrollbar{height:8px}
+  .work-grid::-webkit-scrollbar-track{background:transparent}
+  .work-grid::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px}
+  .work-grid::-webkit-scrollbar-thumb:hover{background:var(--muted)}
+  .work-grid .project{flex:0 0 clamp(240px,26vw,320px);scroll-snap-align:start}
+  .cat{margin-top:clamp(56px,9vw,96px)}
+  .cat:first-of-type{margin-top:48px}
+  .cat-head{font-size:clamp(1.5rem,3.5vw,2.2rem);line-height:1.1}
+  .cat-head .en{display:block;font-size:.8rem;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+  .project{cursor:pointer;overflow:hidden;border-radius:6px}
+  .project .thumb{
+    position:relative;aspect-ratio:16/9;background:var(--bg-soft);
+    border:1px solid var(--line);border-radius:6px;overflow:hidden;
+  }
+  .project .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease,filter .5s}
+  .project:hover .thumb img{transform:scale(1.05);filter:brightness(.7)}
+  .project .play{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    opacity:0;transition:opacity .3s;
+  }
+  .project:hover .play{opacity:1}
+  .project .play span{
+    width:60px;height:60px;border:1.5px solid var(--fg);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+    background:rgba(0,0,0,.35);
+  }
+  .project h3{font-size:1.05rem;margin-top:16px}
+  .project .meta{color:var(--muted);font-size:.85rem;margin-top:4px}
+
+  /* ===== Services ===== */
+  .services{background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-top:48px}
+  .svc{border-top:1px solid var(--line);padding-top:24px}
+  .svc .num{color:var(--muted);font-size:.8rem;letter-spacing:.2em;margin-bottom:14px}
+  .svc h3{font-size:1.25rem;margin-bottom:12px}
+  .svc p{color:var(--muted);font-size:.95rem}
+
+  /* ===== Contact ===== */
+  .contact{text-align:center}
+  .contact h2{font-size:clamp(2rem,6vw,3.5rem);margin-bottom:24px}
+  .contact .mail{color:var(--muted);font-size:clamp(1.1rem,3vw,1.6rem);border-bottom:1px solid var(--line);padding-bottom:6px;transition:color .2s,border-color .2s}
+  .contact .mail:hover{color:var(--fg);border-color:var(--fg)}
+  .socials{display:flex;gap:28px;justify-content:center;margin-top:40px}
+  .socials a{color:var(--muted);font-size:.9rem;letter-spacing:.05em;transition:color .2s}
+  .socials a:hover{color:var(--fg)}
+
+  /* ===== Footer ===== */
+  footer{padding:30px var(--gap);border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:.8rem}
+
+  /* ===== Modal video ===== */
+  .modal{
+    position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.92);
+    display:none;align-items:center;justify-content:center;padding:var(--gap);
+  }
+  .modal.open{display:flex}
+  .modal .box{width:min(960px,100%);aspect-ratio:16/9;position:relative}
+  .modal iframe{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:6px}
+  .modal .close{position:absolute;top:-44px;right:0;background:none;border:0;color:var(--fg);font-size:1.6rem;cursor:pointer}
+
+  /* ===== Responsive ===== */
+  @media(max-width:768px){
+    nav ul{
+      position:fixed;inset:0 0 0 auto;width:75%;max-width:320px;
+      flex-direction:column;justify-content:center;gap:32px;
+      background:var(--bg-soft);border-left:1px solid var(--line);
+      transform:translateX(100%);transition:transform .35s ease;padding:var(--gap);
+    }
+    nav ul.open{transform:translateX(0)}
+    nav a{font-size:1.2rem}
+    .nav-toggle{display:block;z-index:60}
+    .about-grid{grid-template-columns:1fr}
+    .about-grid img{max-width:320px;margin:0 auto}
+    .work-grid .project{flex:0 0 78vw}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header id="header">
+  <a href="#top" class="logo">HUNG NGUYEN PORTFOLIO</a>
+  <nav>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <ul id="menu">
+      <li><a href="#about">Giới thiệu</a></li>
+      <li><a href="#work">Dự án</a></li>
+      <li><a href="#contact">Liên hệ</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ===== HERO / SHOWREEL ===== -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <p class="eyebrow">Videographer · Filmmaker</p>
+    <h1>Dự án<br>nổi bật.</h1>
+    <p>Tôi quay và dựng những thước phim mang cảm xúc — từ thương hiệu, sự kiện đến phim ngắn. Một vài dự án tôi tâm đắc nhất.</p>
+
+    <!-- VIDEO LỚN: đổi data-video (mã YouTube), ảnh thumb, tên -->
+    <article class="project featured-main" data-video="dQw4w9WgXcQ">
+      <div class="thumb"><img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1400&q=80" alt=""><div class="play"><span>▶</span></div></div>
+      <h3>Dự án nổi bật chính</h3>
+      <p class="meta">Showreel · 2025</p>
+    </article>
+
+    <!-- 3 VIDEO NHỎ -->
+    <div class="featured-row">
+      <article class="project" data-video="dQw4w9WgXcQ">
+        <div class="thumb"><img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+        <h3>Dự án nổi bật 02</h3><p class="meta">Sự kiện · 2025</p>
+      </article>
+      <article class="project" data-video="dQw4w9WgXcQ">
+        <div class="thumb"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+        <h3>Dự án nổi bật 03</h3><p class="meta">Xe · 2024</p>
+      </article>
+      <article class="project" data-video="dQw4w9WgXcQ">
+        <div class="thumb"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+        <h3>Dự án nổi bật 04</h3><p class="meta">Cưới · 2024</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="wrap">
+    <p class="eyebrow">Giới thiệu</p>
+    <div class="about-grid">
+      <!-- THAY ảnh chân dung của bạn -->
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Chân dung HUNG">
+      <div class="about-text">
+        <h2>Xin chào, tôi là HUNG.</h2>
+        <p>Tôi là một videographer với hơn X năm kinh nghiệm quay và dựng. Tôi tin rằng mỗi khung hình đều là một quyết định — về ánh sáng, chuyển động và nhịp điệu.</p>
+        <p>Tôi từng cộng tác với các thương hiệu, agency và nghệ sĩ để biến ý tưởng thành những thước phim có chiều sâu. Công cụ của tôi: Sony / Blackmagic, DaVinci Resolve, Premiere Pro.</p>
+        <p>Luôn sẵn sàng cho dự án tiếp theo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WORK ===== -->
+<section id="work">
+  <div class="wrap">
+    <p class="eyebrow">Dự án · kéo ngang để xem thêm →</p>
+    <h2 style="font-size:clamp(1.8rem,4vw,2.6rem)">Danh mục dự án</h2>
+
+    <!-- DỰ ÁN: đổi data-video (mã YouTube), ảnh thumb, tên, thông tin.
+         Thêm/bớt video: copy hoặc xoá thẻ <article class="project">. -->
+
+    <!-- ===== SỰ KIỆN ===== -->
+    <div class="cat">
+      <h3 class="cat-head">Sự kiện<span class="en">Events</span></h3>
+      <div class="work-grid">
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Tên sự kiện 01</h3><p class="meta">Quay · Dựng · 2025</p>
+        </article>
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1505236858219-8359eb29e329?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Tên sự kiện 02</h3><p class="meta">Recap · 2024</p>
+        </article>
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Tên sự kiện 03</h3><p class="meta">Aftermovie · 2024</p>
+        </article>
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Tên sự kiện 04</h3><p class="meta">Highlight · 2023</p>
+        </article>
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Tên sự kiện 05</h3><p class="meta">Live · 2023</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- ===== XE ===== -->
+    <div class="cat">
+      <h3 class="cat-head">Xe<span class="en">Automotive</span></h3>
+      <div class="work-grid">
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Tên dự án xe 01</h3><p class="meta">Commercial · 2025</p>
+        </article>
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Tên dự án xe 02</h3><p class="meta">Cinematic · 2024</p>
+        </article>
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Tên dự án xe 03</h3><p class="meta">Review · 2024</p>
+        </article>
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Tên dự án xe 04</h3><p class="meta">Teaser · 2023</p>
+        </article>
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Tên dự án xe 05</h3><p class="meta">Showcase · 2023</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- ===== NỘI THẤT ===== -->
+    <div class="cat">
+      <h3 class="cat-head">Nội thất<span class="en">Interior</span></h3>
+      <div class="work-grid">
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Tên dự án nội thất 01</h3><p class="meta">Quay · Dựng · 2025</p>
+        </article>
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Tên dự án nội thất 02</h3><p class="meta">Showcase · 2024</p>
+        </article>
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Tên dự án nội thất 03</h3><p class="meta">Walkthrough · 2024</p>
+        </article>
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Tên dự án nội thất 04</h3><p class="meta">Brand · 2023</p>
+        </article>
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Tên dự án nội thất 05</h3><p class="meta">Tour · 2023</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- ===== CƯỚI ===== -->
+    <div class="cat">
+      <h3 class="cat-head">Cưới<span class="en">Wedding</span></h3>
+      <div class="work-grid">
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Tên cặp đôi 01</h3><p class="meta">Cinematic Wedding · 2025</p>
+        </article>
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Tên cặp đôi 02</h3><p class="meta">Highlight · 2024</p>
+        </article>
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Tên cặp đôi 03</h3><p class="meta">Same Day Edit · 2024</p>
+        </article>
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Tên cặp đôi 04</h3><p class="meta">Pre-wedding · 2023</p>
+        </article>
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Tên cặp đôi 05</h3><p class="meta">Teaser · 2023</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- ===== MẠNG XÃ HỘI ===== -->
+    <div class="cat">
+      <h3 class="cat-head">Mạng xã hội<span class="en">Social</span></h3>
+      <div class="work-grid">
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Reels / TikTok 01</h3><p class="meta">Short-form · 2025</p>
+        </article>
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Reels / TikTok 02</h3><p class="meta">Short-form · 2024</p>
+        </article>
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Reels / TikTok 03</h3><p class="meta">Campaign · 2024</p>
+        </article>
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Reels / TikTok 04</h3><p class="meta">Product · 2023</p>
+        </article>
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Reels / TikTok 05</h3><p class="meta">Branding · 2023</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- ===== CÁ NHÂN ===== -->
+    <div class="cat">
+      <h3 class="cat-head">Cá nhân<span class="en">Personal</span></h3>
+      <div class="work-grid">
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Dự án cá nhân 01</h3><p class="meta">Passion project · 2025</p>
+        </article>
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Dự án cá nhân 02</h3><p class="meta">Experimental · 2024</p>
+        </article>
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Dự án cá nhân 03</h3><p class="meta">Travel · 2024</p>
+        </article>
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Dự án cá nhân 04</h3><p class="meta">Nature · 2023</p>
+        </article>
+        <article class="project" data-video="dQw4w9WgXcQ">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Dự án cá nhân 05</h3><p class="meta">Short film · 2023</p>
+        </article>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <p class="eyebrow">Liên hệ</p>
+    <h2>Cùng tạo nên<br>điều gì đó.</h2>
+    <a class="mail" href="mailto:nvh6497@gmail.com">nvh6497@gmail.com</a>
+    <div class="socials">
+      <a href="#" target="_blank">Instagram</a>
+      <a href="#" target="_blank">YouTube</a>
+      <a href="#" target="_blank">Vimeo</a>
+      <a href="#" target="_blank">TikTok</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 HUNG · Videographer. Thiết kế tối giản.</footer>
+
+<!-- ===== MODAL VIDEO ===== -->
+<div class="modal" id="modal">
+  <div class="box">
+    <button class="close" id="closeModal" aria-label="Đóng">✕</button>
+    <iframe id="modalFrame" src="" title="Video" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
+</div>
+
+<script>
+  // Header đổi viền khi cuộn
+  const header=document.getElementById('header');
+  addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>20));
+
+  // Menu mobile
+  const toggle=document.querySelector('.nav-toggle');
+  const menu=document.getElementById('menu');
+  toggle.addEventListener('click',()=>menu.classList.toggle('open'));
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
+
+  // Modal video
+  const modal=document.getElementById('modal');
+  const frame=document.getElementById('modalFrame');
+  document.querySelectorAll('.project').forEach(p=>{
+    p.addEventListener('click',()=>{
+      const id=p.dataset.video;
+      frame.src='https://www.youtube.com/embed/'+id+'?autoplay=1';
+      modal.classList.add('open');
+    });
+  });
+  function closeModal(){modal.classList.remove('open');frame.src='';}
+  document.getElementById('closeModal').addEventListener('click',closeModal);
+  modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
+  addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+</script>
+
+</body>
+</html>
