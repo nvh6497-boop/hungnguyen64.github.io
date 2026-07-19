@@ -101,6 +101,9 @@
   .work-grid::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px}
   .work-grid::-webkit-scrollbar-thumb:hover{background:var(--muted)}
   .work-grid .project{flex:0 0 clamp(240px,26vw,320px);scroll-snap-align:start}
+  /* Khung dọc 9:16 cho mục Mạng xã hội */
+  .work-grid.vertical .project{flex-basis:clamp(170px,20vw,230px)}
+  .work-grid.vertical .thumb{aspect-ratio:9/16}
   .cat{margin-top:clamp(56px,9vw,96px)}
   .cat:first-of-type{margin-top:48px}
   .cat-head{font-size:clamp(1.5rem,3.5vw,2.2rem);line-height:1.1}
@@ -124,14 +127,6 @@
   }
   .project h3{font-size:1.05rem;margin-top:16px}
   .project .meta{color:var(--muted);font-size:.85rem;margin-top:4px}
-
-  /* ===== Services ===== */
-  .services{background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-top:48px}
-  .svc{border-top:1px solid var(--line);padding-top:24px}
-  .svc .num{color:var(--muted);font-size:.8rem;letter-spacing:.2em;margin-bottom:14px}
-  .svc h3{font-size:1.25rem;margin-bottom:12px}
-  .svc p{color:var(--muted);font-size:.95rem}
 
   /* ===== Contact ===== */
   .contact{text-align:center}
@@ -169,6 +164,7 @@
     .about-grid{grid-template-columns:1fr}
     .about-grid img{max-width:320px;margin:0 auto}
     .work-grid .project{flex:0 0 78vw}
+    .work-grid.vertical .project{flex:0 0 55vw}
   }
 </style>
 </head>
@@ -251,23 +247,19 @@
       <div class="work-grid">
         <article class="project" data-video="6p6GDFM7Myg">
           <div class="thumb"><img src="https://img.youtube.com/vi/6p6GDFM7Myg/hqdefault.jpg" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>Pickleball Ecopark</h3><p class="meta">Recap </p>
+          <h3>Pickleball Ecopark</h3><p class="meta">Recap</p>
         </article>
         <article class="project" data-video="dqj_60CuLi4">
-          <div class="thumb"><img src="img src="https://img.youtube.com/vi/dqj_60CuLi4/maxresdefault.jpg" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>YEP Recap CGI 1st</h3><p class="meta">Recap · </p>
+          <div class="thumb"><img src="https://img.youtube.com/vi/dqj_60CuLi4/hqdefault.jpg" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>YEP Recap CGI 1st</h3><p class="meta">Recap</p>
         </article>
         <article class="project" data-video="7kih4MQZ8OA">
-          <div class="thumb"><img src="https:////img.youtube.com/vi/7kih4MQZ8OA/maxresdefault.jpg" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>Thép xanh Nam Định</h3><p class="meta">Recap · </p>
+          <div class="thumb"><img src="https://img.youtube.com/vi/7kih4MQZ8OA/hqdefault.jpg" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Thép xanh Nam Định</h3><p class="meta">Recap</p>
         </article>
         <article class="project" data-video="YmFaoKTeqRA">
-          <div class="thumb"><img src="https:////img.youtube.com/vi/YmFaoKTeqRA/maxresdefault.jpg" alt=""><div class="play"><span>▶</span></div></div>
+          <div class="thumb"><img src="https://img.youtube.com/vi/YmFaoKTeqRA/hqdefault.jpg" alt=""><div class="play"><span>▶</span></div></div>
           <h3>Lễ xuất quân Công An Hà Nội</h3><p class="meta">Highlight · 2023</p>
-        </article>
-        <article class="project" data-video="dqj_60CuLi4">
-          <div class="thumb"><img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>Tên sự kiện 05</h3><p class="meta">Live · 2023</p>
         </article>
       </div>
     </div>
@@ -278,104 +270,84 @@
       <div class="work-grid">
         <article class="project" data-video="XpyG1Ty37Dw">
           <div class="thumb"><img src="https://img.youtube.com/vi/XpyG1Ty37Dw/maxresdefault.jpg" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>Lynk co 06 Sapa</h3><p class="meta">Commercial · </p>
+          <h3>Lynk co 06 Sapa</h3><p class="meta">Commercial</p>
         </article>
         <article class="project" data-video="sE2EgrwY3g8">
           <div class="thumb"><img src="https://img.youtube.com/vi/sE2EgrwY3g8/maxresdefault.jpg" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>Range Rover Autobiography Batumi Gold </h3><p class="meta">Commercial · </p>
+          <h3>Range Rover Autobiography Batumi Gold</h3><p class="meta">Commercial</p>
         </article>
         <article class="project" data-video="xjaYTRlPkm0">
-          <div class="thumb"><img src="img.youtube.com/vi/xjaYTRlPkm0/maxresdefault.jpg" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>Range Rover Autobiography LWB 2025 SUV </h3><p class="meta">Review · 2024</p>
+          <div class="thumb"><img src="https://img.youtube.com/vi/xjaYTRlPkm0/maxresdefault.jpg" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Range Rover Autobiography LWB 2025 SUV</h3><p class="meta">Review · 2024</p>
         </article>
         <article class="project" data-video="iRdteX6Bu54">
-          <div class="thumb"><img src="img.youtube.com/vi/iRdteX6Bu54/maxresdefault.jpg" alt=""><div class="play"><span>▶</span></div></div>
+          <div class="thumb"><img src="https://img.youtube.com/vi/iRdteX6Bu54/maxresdefault.jpg" alt=""><div class="play"><span>▶</span></div></div>
           <h3>Defender Off Road</h3><p class="meta">Teaser · 2023</p>
-        </article>
-        <article class="project" data-video="dQw4w9WgXcQ">
-          <div class="thumb"><img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>Tên dự án xe 05</h3><p class="meta">Showcase · 2023</p>
         </article>
       </div>
     </div>
 
-    <!-- ===== WEDDING ===== -->
+    <!-- ===== CƯỚI ===== -->
     <div class="cat">
       <h3 class="cat-head">Cưới<span class="en">Wedding</span></h3>
       <div class="work-grid">
         <article class="project" data-video="iKEtpfc1ayA">
           <div class="thumb"><img src="https://img.youtube.com/vi/iKEtpfc1ayA/hqdefault.jpg" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>Minh Tuấn - Trà My</h3><p class="meta">Cinematic Wedding · </p>
+          <h3>Minh Tuấn - Trà My</h3><p class="meta">Cinematic Wedding</p>
         </article>
         <article class="project" data-video="pgNYvdGwx9o">
           <div class="thumb"><img src="https://img.youtube.com/vi/pgNYvdGwx9o/hqdefault.jpg" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>Lê Minh - Thùy Dương</h3><p class="meta">Highlight · </p>
+          <h3>Lê Minh - Thùy Dương</h3><p class="meta">Highlight</p>
         </article>
         <article class="project" data-video="hotCWBYjxAs">
           <div class="thumb"><img src="https://img.youtube.com/vi/hotCWBYjxAs/hqdefault.jpg" alt=""><div class="play"><span>▶</span></div></div>
           <h3>Đắc Hai - Hồng Ngân</h3><p class="meta">Same Day Edit · 2024</p>
         </article>
-        <article class="project" data-video="dQw4w9WgXcQ">
-          <div class="thumb"><img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>Tên cặp đôi 04</h3><p class="meta">Pre-wedding · 2023</p>
-        </article>
-        <article class="project" data-video="dQw4w9WgXcQ">
-          <div class="thumb"><img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>Tên cặp đôi 05</h3><p class="meta">Teaser · 2023</p>
-        </article>
       </div>
     </div>
 
-    <!-- ===== MẠNG XÃ HỘI ===== -->
+    <!-- ===== MẠNG XÃ HỘI (khung dọc 9:16) ===== -->
     <div class="cat">
       <h3 class="cat-head">Mạng xã hội<span class="en">Social</span></h3>
       <div class="work-grid vertical">
         <article class="project" data-video="FTvkd2EioU8">
           <div class="thumb"><img src="reelkickfit.png" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>CFB Kickfit</h3><p class="meta">Gym · </p>
+          <h3>CFB Kickfit</h3><p class="meta">Gym</p>
         </article>
         <article class="project" data-video="uFiZU7repoQ">
           <div class="thumb"><img src="Rcong_Shot%201_FINAL.png" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>R+ Cá chép vượt vũ môn</h3><p class="meta">Nội thất · </p>
+          <h3>R+ Cá chép vượt vũ môn</h3><p class="meta">Nội thất</p>
         </article>
         <article class="project" data-video="qbfLH96mipM">
-          <div class="thumb"><img src="thaihoanghkbeer.pngg" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>Reels / DJ Thái Hoang show HKBeer</h3><p class="meta">Beer Club · </p>
+          <div class="thumb"><img src="thaihoanghkbeer.png" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Reels / DJ Thái Hoang show HKBeer</h3><p class="meta">Beer Club</p>
         </article>
         <article class="project" data-video="0KB4wnXF0uU">
           <div class="thumb"><img src="s450.png" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>Phương Lan Mers s450</h3><p class="meta">Xe · </p>
+          <h3>Phương Lan Mers s450</h3><p class="meta">Xe</p>
         </article>
         <article class="project" data-video="tHivsLKhMPI">
           <div class="thumb"><img src="metropoli5.png" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>Metropoli 5</h3><p class="meta">BĐS · </p>
+          <h3>Metropoli 5</h3><p class="meta">BĐS</p>
         </article>
       </div>
     </div>
 
     <!-- ===== KHÁC ===== -->
     <div class="cat">
-      <h3 class="cat-head">Nội thất<span class="en"> Other</span></h3>
+      <h3 class="cat-head">Khác<span class="en">Other</span></h3>
       <div class="work-grid">
         <article class="project" data-video="dQw4w9WgXcQ">
           <div class="thumb"><img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>Tên dự án nội thất 01</h3><p class="meta">Quay · Dựng · 2025</p>
+          <h3>Dự án khác 01</h3><p class="meta">Quay · Dựng · 2025</p>
         </article>
         <article class="project" data-video="dQw4w9WgXcQ">
           <div class="thumb"><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>Tên dự án nội thất 02</h3><p class="meta">Showcase · 2024</p>
+          <h3>Dự án khác 02</h3><p class="meta">Showcase · 2024</p>
         </article>
         <article class="project" data-video="dQw4w9WgXcQ">
           <div class="thumb"><img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>Tên dự án nội thất 03</h3><p class="meta">Walkthrough · 2024</p>
-        </article>
-        <article class="project" data-video="dQw4w9WgXcQ">
-          <div class="thumb"><img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>Tên dự án nội thất 04</h3><p class="meta">Brand · 2023</p>
-        </article>
-        <article class="project" data-video="dQw4w9WgXcQ">
-          <div class="thumb"><img src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>Tên dự án nội thất 05</h3><p class="meta">Tour · 2023</p>
+          <h3>Dự án khác 03</h3><p class="meta">Walkthrough · 2024</p>
         </article>
       </div>
     </div>
@@ -386,23 +358,15 @@
       <div class="work-grid">
         <article class="project" data-video="YYNzJTTa_p8">
           <div class="thumb"><img src="https://img.youtube.com/vi/YYNzJTTa_p8/hqdefault.jpg" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>PRE GRADUATION YẾN NHI</h3><p class="meta">Pre Graduation · </p>
+          <h3>PRE GRADUATION YẾN NHI</h3><p class="meta">Pre Graduation</p>
         </article>
         <article class="project" data-video="pgGk2zmh0yg">
-          <div class="thumb"><img src=""https://img.youtube.com/vi/pgGk2zmh0yg/hqdefault.jpg" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>Em Nhi</h3><p class="meta">Story · </p>
+          <div class="thumb"><img src="https://img.youtube.com/vi/pgGk2zmh0yg/hqdefault.jpg" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Em Nhi</h3><p class="meta">Story</p>
         </article>
         <article class="project" data-video="jJPqVGzw8cw">
-          <div class="thumb"><img src="https://img.youtube.com/vi/YYNzJTTa_p8/maxresdefault.jpg" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>Dự án cá nhân 03</h3><p class="meta">Nàng thơ · </p>
-        </article>
-        <article class="project" data-video="dQw4w9WgXcQ">
-          <div class="thumb"><img src="https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>Dự án cá nhân 04</h3><p class="meta">Nature · 2023</p>
-        </article>
-        <article class="project" data-video="dQw4w9WgXcQ">
-          <div class="thumb"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=800&q=80" alt=""><div class="play"><span>▶</span></div></div>
-          <h3>Dự án cá nhân 05</h3><p class="meta">Short film · 2023</p>
+          <div class="thumb"><img src="https://img.youtube.com/vi/jJPqVGzw8cw/hqdefault.jpg" alt=""><div class="play"><span>▶</span></div></div>
+          <h3>Nàng thơ</h3><p class="meta">Nàng thơ</p>
         </article>
       </div>
     </div>
@@ -414,7 +378,7 @@
 <section class="contact" id="contact">
   <div class="wrap">
     <p class="eyebrow">Liên hệ</p>
-    <h2>1 better every day<br>.</h2>
+    <h2>1 better every day.</h2>
     <a class="mail" href="mailto:nvh6497@gmail.com">nvh6497@gmail.com</a>
     <div class="socials">
       <a href="#" target="_blank">Instagram</a>
